@@ -12,3 +12,6 @@
 ### c_implemented_yield_and_send.cc
 一个c/c++实现的python yield关键字和send函数, 简单封装了ucontext_t, yield可以双向传递数据;
 
+### async.py
+一个python3的异步操作demo, 分别处理两项任务.
+
