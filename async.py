@@ -19,6 +19,8 @@ def fib(n):
         a = yield fib(n - 1)
         b = yield fib(n - 2)
         yield a + b
+    #print("Exit{}".format(n))
+
 
 #coroutine 1
 def read_input(loop):
@@ -58,6 +60,13 @@ class EventLoop(object):
             self._tasks_waiting_on_stdin.append((coroutine, stack))
         elif stack:
             self.schedule(stack[0], result, stack[1])
+            try:
+                # trigger a exception to make sure "coroutine" return.
+                coroutine.send("just run to the end.  please!")
+            except (GeneratorExit, StopIteration):
+                pass
+
+
 
     def schedule(self, coroutine, value=None, stack=(), when=None):
         task = partial(self.resume_task, coroutine, value, stack)
@@ -100,3 +109,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
