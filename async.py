@@ -23,7 +23,7 @@ def fib(n):
 
 
 #coroutine 1
-def read_input(loop):
+def read_input():
     while True:
         line = yield sys.stdin
         n = int(line)
@@ -102,7 +102,7 @@ class EventLoop(object):
 def main():
     loop = EventLoop()
     hello_task = print_every('Hello world!', 3)
-    fib_task = read_input(loop)
+    fib_task = read_input()
     loop.schedule(hello_task)
     loop.schedule(fib_task)
     loop.run_forever()

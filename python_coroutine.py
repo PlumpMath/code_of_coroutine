@@ -27,9 +27,9 @@
 
 
 def coroutine(func):
-    coroutine = func()
-    coroutine.send(None)
-    return coroutine
+    context = func()
+    context.send(None)
+    return context
 
 @coroutine
 def biz():
